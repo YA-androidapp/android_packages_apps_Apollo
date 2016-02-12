@@ -25,25 +25,25 @@ import static com.andrew.apollo.lastfm.StringUtilities.encode;
 import static com.andrew.apollo.lastfm.StringUtilities.map;
 
 import android.content.Context;
-import android.util.Log;
+//import android.util.Log;
 
 import com.andrew.apollo.lastfm.Result.Status;
 
-import org.apache.http.HttpStatus;
+//import org.apache.http.HttpStatus;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import java.io.BufferedWriter;
+//import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+//import java.io.OutputStream;
+//import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.Proxy;
-import java.net.URL;
+//import java.net.URL;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -67,17 +67,17 @@ import javax.xml.parsers.ParserConfigurationException;
  */
 public class Caller {
 
-    private final static String TAG = "LastFm.Caller";
+//    private final static String TAG = "LastFm.Caller";
 
-    private final static String PARAM_API_KEY = "api_key";
+//    private final static String PARAM_API_KEY = "api_key";
 
-    private final static String DEFAULT_API_ROOT = "http://ws.audioscrobbler.com/2.0/";
+//    private final static String DEFAULT_API_ROOT = "http://ws.audioscrobbler.com/2.0/";
 
     private static Caller mInstance = null;
 
-    private final String apiRootUrl = DEFAULT_API_ROOT;
+//    private final String apiRootUrl = DEFAULT_API_ROOT;
 
-    private final String userAgent = "Apollo";
+//    private final String userAgent = "Apollo";
 
     private Result lastResult;
 
@@ -126,38 +126,38 @@ public class Caller {
         params = new WeakHashMap<String, String>(params);
         InputStream inputStream = null;
 
-        // no entry in cache, load from web
-        if (inputStream == null) {
-            // fill parameter map with apiKey and session info
-            params.put(PARAM_API_KEY, apiKey);
-            try {
-                final HttpURLConnection urlConnection = openPostConnection(method, params);
-                inputStream = getInputStreamFromConnection(urlConnection);
+//        // no entry in cache, load from web
+//        if (inputStream == null) {
+//            // fill parameter map with apiKey and session info
+//            params.put(PARAM_API_KEY, apiKey);
+//            try {
+//                final HttpURLConnection urlConnection = openPostConnection(method, params);
+//                inputStream = getInputStreamFromConnection(urlConnection);
+//
+//                if (inputStream == null) {
+//                    lastResult = Result.createHttpErrorResult(urlConnection.getResponseCode(),
+//                            urlConnection.getResponseMessage());
+//                    return lastResult;
+//                }
+//            } catch (final IOException ioEx) {
+//                // We will assume that the server is not ready
+//                Log.e(TAG, "Failed to download data", ioEx);
+//                lastResult = Result.createHttpErrorResult(HttpStatus.SC_SERVICE_UNAVAILABLE,
+//                        ioEx.getLocalizedMessage());
+//                return lastResult;
+//            }
+//        }
 
-                if (inputStream == null) {
-                    lastResult = Result.createHttpErrorResult(urlConnection.getResponseCode(),
-                            urlConnection.getResponseMessage());
-                    return lastResult;
-                }
-            } catch (final IOException ioEx) {
-                // We will assume that the server is not ready
-                Log.e(TAG, "Failed to download data", ioEx);
-                lastResult = Result.createHttpErrorResult(HttpStatus.SC_SERVICE_UNAVAILABLE,
-                        ioEx.getLocalizedMessage());
-                return lastResult;
-            }
-        }
-
-        try {
-            final Result result = createResultFromInputStream(inputStream);
-            lastResult = result;
-        } catch (final IOException ioEx) {
-            Log.e(TAG, "Failed to read document", ioEx);
-            lastResult = new Result(ioEx.getLocalizedMessage());
-        } catch (final SAXException saxEx) {
-            Log.e(TAG, "Failed to parse document", saxEx);
-            lastResult = new Result(saxEx.getLocalizedMessage());
-        }
+//        try {
+//            final Result result = createResultFromInputStream(inputStream);
+//            lastResult = result;
+//        } catch (final IOException ioEx) {
+//            Log.e(TAG, "Failed to read document", ioEx);
+//            lastResult = new Result(ioEx.getLocalizedMessage());
+//        } catch (final SAXException saxEx) {
+//            Log.e(TAG, "Failed to parse document", saxEx);
+            lastResult = new Result(""); //saxEx.getLocalizedMessage());
+//        }
         return lastResult;
     }
 
@@ -170,12 +170,13 @@ public class Caller {
      * @throws IOException if an I/O exception occurs.
      */
     public HttpURLConnection openConnection(final String url) throws IOException {
-        final URL u = new URL(url);
-        HttpURLConnection urlConnection;
-        urlConnection = (HttpURLConnection)u.openConnection();
-        urlConnection.setRequestProperty("User-Agent", userAgent);
-        urlConnection.setUseCaches(true);
-        return urlConnection;
+//        final URL u = new URL(url);
+//        HttpURLConnection urlConnection;
+//        urlConnection = (HttpURLConnection)u.openConnection();
+//        urlConnection.setRequestProperty("User-Agent", userAgent);
+//        urlConnection.setUseCaches(true);
+//        return urlConnection;
+        return null;
     }
 
     /**
@@ -186,16 +187,17 @@ public class Caller {
      */
     private HttpURLConnection openPostConnection(final String method,
             final Map<String, String> params) throws IOException {
-        final HttpURLConnection urlConnection = openConnection(apiRootUrl);
-        urlConnection.setRequestMethod("POST");
-        urlConnection.setDoOutput(true);
-        urlConnection.setUseCaches(true);
-        final OutputStream outputStream = urlConnection.getOutputStream();
-        final BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
-        final String post = buildPostBody(method, params);
-        writer.write(post);
-        writer.close();
-        return urlConnection;
+//        final HttpURLConnection urlConnection = openConnection(apiRootUrl);
+//        urlConnection.setRequestMethod("POST");
+//        urlConnection.setDoOutput(true);
+//        urlConnection.setUseCaches(true);
+//        final OutputStream outputStream = urlConnection.getOutputStream();
+//        final BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
+//        final String post = buildPostBody(method, params);
+//        writer.write(post);
+//        writer.close();
+//        return urlConnection;
+        return null;
     }
 
     /**
@@ -205,14 +207,14 @@ public class Caller {
      */
     private InputStream getInputStreamFromConnection(final HttpURLConnection connection)
             throws IOException {
-        final int responseCode = connection.getResponseCode();
-
-        if (responseCode == HttpURLConnection.HTTP_FORBIDDEN
-                || responseCode == HttpURLConnection.HTTP_BAD_REQUEST) {
-            return connection.getErrorStream();
-        } else if (responseCode == HttpURLConnection.HTTP_OK) {
-            return connection.getInputStream();
-        }
+//        final int responseCode = connection.getResponseCode();
+//
+//        if (responseCode == HttpURLConnection.HTTP_FORBIDDEN
+//                || responseCode == HttpURLConnection.HTTP_BAD_REQUEST) {
+//            return connection.getErrorStream();
+//        } else if (responseCode == HttpURLConnection.HTTP_OK) {
+//            return connection.getInputStream();
+//        }
 
         return null;
     }

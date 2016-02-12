@@ -52,7 +52,7 @@ public class ThemeUtils {
     /**
      * Used to searc the "Apps" section of the Play Store for "Apollo Themes".
      */
-    private static final String SEARCH_URI = "https://market.android.com/search?q=%s&c=apps&featured=APP_STORE_SEARCH";
+    private static final String SEARCH_URI = "https://example.com/"; //market.android.com/search?q=%s&c=apps&featured=APP_STORE_SEARCH";
 
     /**
      * Used to search the Play Store for a specific theme.

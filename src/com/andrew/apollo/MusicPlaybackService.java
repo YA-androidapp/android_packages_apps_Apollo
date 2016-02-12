@@ -28,9 +28,9 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
-import android.media.MediaMetadataRetriever;
+//import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnCompletionListener;
+//import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaMetadata;
 import android.media.audiofx.AudioEffect;
 import android.media.session.MediaSession;
@@ -61,10 +61,10 @@ import com.andrew.apollo.cache.ImageCache;
 import com.andrew.apollo.cache.ImageFetcher;
 import com.andrew.apollo.provider.FavoritesStore;
 import com.andrew.apollo.provider.RecentStore;
-import com.andrew.apollo.utils.ApolloUtils;
+//import com.andrew.apollo.utils.ApolloUtils;
 import com.andrew.apollo.utils.Lists;
 import com.andrew.apollo.utils.MusicUtils;
-import com.andrew.apollo.utils.PreferenceUtils;
+//import com.andrew.apollo.utils.PreferenceUtils;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -567,7 +567,10 @@ public class MusicPlaybackService extends Service {
         mAudioManager.registerMediaButtonEventReceiver(mMediaButtonReceiverComponent);
 
         // Use the remote control APIs to set the playback state
-        setUpMediaSession();
+        try {
+            setUpMediaSession();
+        }catch(Exception e){
+        }
 
         // Initialize the preferences
         mPreferences = getSharedPreferences("Service", 0);

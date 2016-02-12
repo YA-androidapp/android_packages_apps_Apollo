@@ -164,7 +164,7 @@ public final class PreferenceUtils {
      *         false otherwise
      */
     public final boolean onlyOnWifi() {
-        return mPreferences.getBoolean(ONLY_ON_WIFI, true);
+        return false; //mPreferences.getBoolean(ONLY_ON_WIFI, true);
     }
 
     /**

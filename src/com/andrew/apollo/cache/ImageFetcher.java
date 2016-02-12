@@ -77,18 +77,18 @@ public class ImageFetcher extends ImageWorker {
      */
     @Override
     protected Bitmap processBitmap(final String url) {
-        if (url == null) {
-            return null;
-        }
-        final File file = downloadBitmapToFile(mContext, url, DEFAULT_HTTP_CACHE_DIR);
-        if (file != null) {
-            // Return a sampled down version
-            final Bitmap bitmap = decodeSampledBitmapFromFile(file.toString());
-            file.delete();
-            if (bitmap != null) {
-                return bitmap;
-            }
-        }
+//        if (url == null) {
+//            return null;
+//        }
+//        final File file = downloadBitmapToFile(mContext, url, DEFAULT_HTTP_CACHE_DIR);
+//        if (file != null) {
+//            // Return a sampled down version
+//            final Bitmap bitmap = decodeSampledBitmapFromFile(file.toString());
+//            file.delete();
+//            if (bitmap != null) {
+//                return bitmap;
+//            }
+//        }
         return null;
     }
 
@@ -273,44 +273,44 @@ public class ImageFetcher extends ImageWorker {
      */
     public static final File downloadBitmapToFile(final Context context, final String urlString,
             final String uniqueName) {
-        final File cacheDir = ImageCache.getDiskCacheDir(context, uniqueName);
-
-        if (!cacheDir.exists()) {
-            cacheDir.mkdir();
-        }
-
-        HttpURLConnection urlConnection = null;
-        BufferedOutputStream out = null;
-
-        try {
-            final File tempFile = File.createTempFile("bitmap", null, cacheDir); //$NON-NLS-1$
-
-            final URL url = new URL(urlString);
-            urlConnection = (HttpURLConnection)url.openConnection();
-            if (urlConnection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-                return null;
-            }
-            final InputStream in = new BufferedInputStream(urlConnection.getInputStream(),
-                    IO_BUFFER_SIZE_BYTES);
-            out = new BufferedOutputStream(new FileOutputStream(tempFile), IO_BUFFER_SIZE_BYTES);
-
-            int oneByte;
-            while ((oneByte = in.read()) != -1) {
-                out.write(oneByte);
-            }
-            return tempFile;
-        } catch (final IOException ignored) {
-        } finally {
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-            if (out != null) {
-                try {
-                    out.close();
-                } catch (final IOException ignored) {
-                }
-            }
-        }
+//        final File cacheDir = ImageCache.getDiskCacheDir(context, uniqueName);
+//
+//        if (!cacheDir.exists()) {
+//            cacheDir.mkdir();
+//        }
+//
+//        HttpURLConnection urlConnection = null;
+//        BufferedOutputStream out = null;
+//
+//        try {
+//            final File tempFile = File.createTempFile("bitmap", null, cacheDir); //$NON-NLS-1$
+//
+//            final URL url = new URL(urlString);
+//            urlConnection = (HttpURLConnection)url.openConnection();
+//            if (urlConnection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+//                return null;
+//            }
+//            final InputStream in = new BufferedInputStream(urlConnection.getInputStream(),
+//                    IO_BUFFER_SIZE_BYTES);
+//            out = new BufferedOutputStream(new FileOutputStream(tempFile), IO_BUFFER_SIZE_BYTES);
+//
+//            int oneByte;
+//            while ((oneByte = in.read()) != -1) {
+//                out.write(oneByte);
+//            }
+//            return tempFile;
+//        } catch (final IOException ignored) {
+//        } finally {
+//            if (urlConnection != null) {
+//                urlConnection.disconnect();
+//            }
+//            if (out != null) {
+//                try {
+//                    out.close();
+//                } catch (final IOException ignored) {
+//                }
+//            }
+//        }
         return null;
     }
 

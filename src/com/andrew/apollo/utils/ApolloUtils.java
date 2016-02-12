@@ -115,42 +115,42 @@ public final class ApolloUtils {
          * This sort of handles a sudden configuration change, but I think it
          * should be dealt with in a more professional way.
          */
-        if (context == null) {
+//        if (context == null) {
             return false;
-        }
-
-        boolean state = false;
-        final boolean onlyOnWifi = PreferenceUtils.getInstance(context).onlyOnWifi();
-
-        /* Monitor network connections */
-        final ConnectivityManager connectivityManager = (ConnectivityManager)context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        /* Wi-Fi connection */
-        final NetworkInfo wifiNetwork = connectivityManager
-                .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (wifiNetwork != null) {
-            state = wifiNetwork.isConnectedOrConnecting();
-        }
-
-        /* Mobile data connection */
-        final NetworkInfo mbobileNetwork = connectivityManager
-                .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        if (mbobileNetwork != null) {
-            if (!onlyOnWifi) {
-                state = mbobileNetwork.isConnectedOrConnecting();
-            }
-        }
-
-        /* Other networks */
-        final NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
-        if (activeNetwork != null) {
-            if (!onlyOnWifi) {
-                state = activeNetwork.isConnectedOrConnecting();
-            }
-        }
-
-        return state;
+//        }
+//
+//        boolean state = false;
+//        final boolean onlyOnWifi = PreferenceUtils.getInstance(context).onlyOnWifi();
+//
+//        /* Monitor network connections */
+//        final ConnectivityManager connectivityManager = (ConnectivityManager)context
+//                .getSystemService(Context.CONNECTIVITY_SERVICE);
+//
+//        /* Wi-Fi connection */
+//        final NetworkInfo wifiNetwork = connectivityManager
+//                .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+//        if (wifiNetwork != null) {
+//            state = wifiNetwork.isConnectedOrConnecting();
+//        }
+//
+//        /* Mobile data connection */
+//        final NetworkInfo mbobileNetwork = connectivityManager
+//                .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+//        if (mbobileNetwork != null) {
+//            if (!onlyOnWifi) {
+//                state = mbobileNetwork.isConnectedOrConnecting();
+//            }
+//        }
+//
+//        /* Other networks */
+//        final NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+//        if (activeNetwork != null) {
+//            if (!onlyOnWifi) {
+//                state = activeNetwork.isConnectedOrConnecting();
+//            }
+//        }
+//
+//        return state;
     }
 
     /**
