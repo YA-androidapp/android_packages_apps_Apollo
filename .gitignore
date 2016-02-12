@@ -1,2 +1,28 @@
-git rm -r --cached bin
-git rm -r --cached gen
+*.ap_
+*.apk
+*.class
+*.dex
+*.iml
+*.iml
+*.ipr
+*.iws
+.classpath
+.DS_Store
+.gradle
+.gradle/
+.idea/
+.idea/libraries/
+.idea/tasks.xml
+.idea/workspace.xml
+.project
+app/build/
+bin/
+build.gradle
+build/
+gen/
+gradle/
+gradlew
+gradlew.bat
+local.properties
+proguard/
+settings.gradle
